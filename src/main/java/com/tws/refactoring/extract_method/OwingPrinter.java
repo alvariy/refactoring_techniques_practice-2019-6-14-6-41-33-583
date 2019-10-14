@@ -6,35 +6,16 @@ import java.util.List;
 import java.util.Vector;
 
 public class OwingPrinter {
+    private static final String CONSTANT_HEADER = "*****************************\n****** Customer totals ******\n*****************************";
+
     void printOwing(String name, List<Order> orders) {
-        Iterator<Order> elements = orders.iterator();
-        double outstanding = 0.0;
+        Double outstanding = calculateAmount(orders);
 
-        // print banner
-        System.out.println ("*****************************");
-        System.out.println ("****** Customer totals ******");
-        System.out.println ("*****************************");
-
-        // print owings
-        while (elements.hasNext()) {
-            Order each = (Order) elements.next();
-            outstanding += each.getAmount();
-        }
-
-        // print details
-        System.out.println("name: " + name);
-        System.out.println("amount: " + outstanding);
-    }
-}
-
-class Order {
-    private final double amount;
-
-    public Order(double amount) {
-        this.amount = amount;
+        System.out.println(CONSTANT_HEADER + "\nname: " + name + "\namount: " + outstanding);
     }
 
-    public double getAmount() {
-        return amount;
+    private Double calculateAmount(List<Order> orders) {
+
+        return orders.stream().mapToDouble(Order::getAmount).sum();
     }
 }
