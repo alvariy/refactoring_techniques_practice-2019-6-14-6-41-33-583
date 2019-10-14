@@ -20,5 +20,17 @@ public class BannerRenderTest {
         assertThat(expectedValue, is(actualValue));
     }
 
+    @Test
+    public void return_banner_when_browser_equals_IE_platform_windows() {
+
+
+        String expectedValue = "banner";
+
+        BannerRender bannerRender = new BannerRender();
+
+        String actualValue = bannerRender.renderBanner("Windows", "IE");
+
+        assertThat(expectedValue, is(actualValue));
+    }
 
 }

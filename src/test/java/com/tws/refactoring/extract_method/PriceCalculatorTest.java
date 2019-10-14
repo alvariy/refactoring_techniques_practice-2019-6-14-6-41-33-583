@@ -17,4 +17,6 @@ public class PriceCalculatorTest {
         double actualValue = calculator.getPrice(2,2);
         assertThat(actualValue, is(expectedValue));
     }
+
+
 }
